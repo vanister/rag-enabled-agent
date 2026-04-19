@@ -7,7 +7,8 @@
 - Context management, prompt engineering for small models (qwen2.5-coder:3b)
 - **Current phase:** Phase 2 - Core Services (LLM ✅, Conversation ✅, Tools/Parser/Context pending)
 
-See `docs/quick-reference.md` for types and `docs/tasks.md` for checklist.
+See [quick-reference.md](docs/quick-reference.md) for architecture, types, and current phase.
+See [tasks.md](docs/tasks.md) for complete implementation checklist.
 
 ## Architecture Rules
 
@@ -67,14 +68,32 @@ src/
 └── shared/       # types.d.ts, utils.ts
 ```
 
-## Code Style
+## Code Preferences
 
-- Guard clauses, early returns, no deep nesting
+**Always ask before providing code samples**
+
+### Universal
+
+- Guard clauses, early returns, avoid deep nesting
 - No return statements inline with `if`
-- Named functions over arrows (unless clearer)
-- 2-space indent, 100 char limit
-- Minimal comments, no public API docs unless non-obvious
-- Functional paradigm, pure functions (justify impure)
+- Minimal necessary comments only
+- Don't document public APIs unless non-obvious
+- Simple, concise, single-purpose code
+- 100 char line limit, SOLID principles, test-minded
+- Use specific custom error classes, not generic Error
+
+### TypeScript/React
+
+- 2-space indent, functional paradigm, pure functions (justify impure)
+- Named function declarations over arrows (unless clarity improves)
+- Arrow functions require parens, destructure objects
+- Components: `export function Component(props: ComponentProps) {...}`
+- Single-purpose components, logic in helpers/hooks not JSX
+- CSS Modules preferred
+- No `index.ts` barrels
+- Classes should use `TitleCase` names
+- Utility/helpers/functional files use `camelCase` names
+- Class member order: private vars, public vars, ctors, getter/setters, public funcs, private funcs
 
 ## Key Design Decisions
 
